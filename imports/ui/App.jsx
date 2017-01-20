@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
  
     this.state = {
-      hideCompleted: false,
+      filter: '',
     };
   }
 
@@ -31,26 +31,29 @@ class App extends Component {
     ReactDOM.findDOMNode(this.refs.passengers).value = '';
   }
 
-  toggleHideCompleted() {
+  handleFilter(event) {
+    const text = ReactDOM.findDOMNode(this.refs.filter).value.trim();
     this.setState({
-      hideCompleted: !this.state.hideCompleted,
+      filter: text,
+    });
+  }
+
+  filter(text) {
+    text = text.toLowerCase();
+    return this.props.parties.filter(party => {
+      var name = party.headOfParty.toLowerCase();
+      return (name.indexOf(text) !== -1);
     });
   }
 
   renderParties() {
-    let filteredParties = this.props.parties;
-    if (this.state.hideCompleted) {
-      filteredParties = filteredParties.filter(party => !party.checked);
-    }
+    const text = this.state.filter;
+    let filteredParties = !text ? this.props.parties : this.filter(text);
     return filteredParties.map((party) => {
-      const currentUserId = this.props.currentUser && this.props.currentUser._id;
-      const showPrivateButton = party.owner === currentUserId;
- 
       return (
         <Party
           key={party._id}
           party={party}
-          showPrivateButton={showPrivateButton}
         />
       );
     });
@@ -60,41 +63,38 @@ class App extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Todo List ({this.props.incompleteCount})</h1>
+          <h1>Bus Parties ({this.props.completeCount} incomplete)</h1>
 
-          <label className="hide-completed">
+          <form className="filter">
             <input
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
+              type="text"
+              ref="filter"
+              placeholder="Type to filter"
+              onKeyUp={ this.handleFilter.bind(this) }
             />
-            Hide Completed Parties
-          </label>
-
-          <AccountsUIWrapper />
-
-          { this.props.currentUser ?
-            <form className="new-party" onSubmit={this.handleSubmit.bind(this)} >
-              <input
-                type="text"
-                ref="name"
-                placeholder="Head of party"
-              />
-              <input
-                type="text"
-                ref="passengers"
-                placeholder="Number of passengers"
-              />
-              <button type="submit"></button>
-            </form> : ''
-          }
+          </form>
 
         </header>
 
-        <ul>
+        <ul id="parties">
           {this.renderParties()}
         </ul>
+
+        <footer>
+          <form className="new-party" onSubmit={this.handleSubmit.bind(this)} >
+            <input
+              type="text"
+              ref="name"
+              placeholder="Head of party"
+            />
+            <input
+              type="text"
+              ref="passengers"
+              placeholder="Number of passengers"
+            />
+            <button type="submit"></button>
+          </form>
+        </footer>
       </div>
     );
   }
@@ -102,16 +102,17 @@ class App extends Component {
 
 App.propTypes = {
   parties: PropTypes.array.isRequired,
-  incompleteCount: PropTypes.number.isRequired,
-  currentUser: PropTypes.object,
+  completeCount: PropTypes.number.isRequired,
 };
 
 export default createContainer(() => {
   Meteor.subscribe('parties');
 
+  var parties = Parties.find({}, { sort: { headOfParty: -1 } }).fetch();
   return {
-    parties: Parties.find({}, { sort: { headOfParty: -1 } }).fetch(),
-    incompleteCount: 1, //Parties.find({ checked: { $ne: true } }).count(),
-    currentUser: Meteor.user(),
+    parties: parties,
+    completeCount: parties.filter(party => {
+      return party.boarded < party.numberOfSeats;
+    }).length,
   };
 }, App);

@@ -1,1 +1,65 @@
 /* CSS declarations go here */
+
+body {
+    background: #333;
+    color: #f99;
+    font-family: arial;
+    padding: 0;
+    font-size: 16px;
+}
+h1 {
+    margin: 10px 20px;
+}
+input {
+    font-size: 20px;
+    width: 300px;
+    margin: 5px 0px 5px 20px;
+    padding: 1px 5px;
+}
+.delete {
+    display: none;
+}
+ul {
+    padding: 0 0 0 20px;
+    list-style: none;
+    display: table;
+}
+li {
+    display: table-row;
+}
+li.complete {
+    background: #595;
+    color: black;
+}
+li > span {
+    display: table-cell;
+    padding: 10px;
+}
+li > span strong {
+    letter-spacing: 1px;
+    font-size: 1.3em;
+    margin-right: 5px;
+}
+li ~ li > span {
+    border-top: 1px dotted #fff;
+}
+li > span.buttons {
+    padding: 9px 0 9px 50px;
+}
+li button {
+    font-size: 20px;
+    background: #f99;
+    border-top-color: #fff;
+    border-left-color: #fff;
+    border-right-color: #a77;
+    border-bottom-color: #a77;
+    margin-right: 20px;
+    padding: 5px 10px;
+}
+li button:disabled {
+    background: #888;
+    color: #666;
+}
+.new-party button {
+    visibility: hidden
+}
