@@ -51,7 +51,7 @@ li ~ li > span {
 }
 li > span.buttons {
     text-align: right;
-    padding: 9px 0 9px 50px;
+    padding: 9px 0 9px 0;
 }
 li button {
     font-size: 20px;
@@ -62,6 +62,7 @@ li button {
     border-right-color: #a77;
     border-bottom-color: #a77;
     margin-right: 10px;
+    margin-left: 10px;
     padding: 5px 10px;
 }
 li button:disabled {
