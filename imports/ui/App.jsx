@@ -127,7 +127,7 @@ App.propTypes = {
 export default createContainer(() => {
   Meteor.subscribe('parties');
 
-  var parties = Parties.find({}, { sort: { headOfParty: -1 } }).fetch();
+  var parties = Parties.find({}, { sort: { headOfParty: 1 } }).fetch();
   var remainingSeats = 0;
   parties.forEach(party => {
     remainingSeats += party.numberOfSeats - party.boarded;
