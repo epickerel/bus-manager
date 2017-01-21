@@ -37,14 +37,14 @@ export default class Party extends Component {
             onClick={this.boardMember.bind(this)}
             disabled={this.props.party.boarded >= this.props.party.numberOfSeats}
           >
-            Board person
+            Board
           </button>
           <button
             className="unboard"
             onClick={this.unboardMember.bind(this)}
             disabled={this.props.party.boarded === 0}
           >
-            Unboard person
+            Unboard
           </button>
           <button className="delete" onClick={this.deleteThisParty.bind(this)}>
             &times;

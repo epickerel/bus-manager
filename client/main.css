@@ -56,12 +56,11 @@ li > span.buttons {
 li button {
     font-size: 20px;
     background: #f99;
-    min-width: 170px;
+    width: 100px;
     border-top-color: #fff;
     border-left-color: #fff;
     border-right-color: #a77;
     border-bottom-color: #a77;
-    margin-right: 20px;
     padding: 5px 10px;
 }
 li button:disabled {
@@ -69,7 +68,7 @@ li button:disabled {
     color: #666;
 }
 .new-party button {
-    margin: 5px 0px 5px 20px;
+    margin: 5px 0px 5px;
     display: block;
     font-size: 1.4em;
 }
