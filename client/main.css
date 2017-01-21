@@ -17,7 +17,7 @@ h1 {
 }
 input {
     font-size: 20px;
-    width: 300px;
+    width: 100%;
     margin: 5px 0px 5px;
     padding: 1px 5px;
 }
@@ -74,7 +74,10 @@ li button:disabled {
     display: block;
     font-size: 1.4em;
 }
+.new-party ~ .new-party {
+    display: none;
+}
 textarea {
     height: 200px;
-    width: 380px;
+    width: 100%;
 }
