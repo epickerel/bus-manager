@@ -44,4 +44,7 @@ Meteor.methods({
 
     Parties.update(partyId, { $set: { boarded: (party.boarded - 1) } });
   },
+  'parties.removeAll'() {
+    Parties.remove({});
+  }
 });

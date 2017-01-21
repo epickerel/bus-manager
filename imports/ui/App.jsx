@@ -18,6 +18,21 @@ class App extends Component {
     };
   }
 
+  replaceAll(event) {
+    event.preventDefault();
+    Meteor.call('parties.removeAll');
+    const raw = ReactDOM.findDOMNode(this.refs.replaceAll).value.trim();
+    raw.split('\n').filter(row => {
+      return row !== '';
+    }).map(row => {
+      const parts = row.split(' (');
+      console.log(row, parts)
+      const headOfParty = parts[0];
+      const passengers = parts[1].substr(0, parts[1].length - 1);
+      Meteor.call('parties.insert', headOfParty, passengers);
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
  
@@ -63,7 +78,7 @@ class App extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Bus Parties ({this.props.completeCount} seats needed)</h1>
+          <h1>Bus Parties ({this.props.completeCount} needed)</h1>
 
           <form className="filter">
             <input
@@ -93,6 +108,10 @@ class App extends Component {
               placeholder="Number of passengers"
             />
             <button type="submit">Add</button>
+          </form>
+          <form className="new-party" onSubmit={this.replaceAll.bind(this)} >
+            <textarea ref="replaceAll"></textarea>
+            <button type="submit">Replace All</button>
           </form>
         </footer>
       </div>

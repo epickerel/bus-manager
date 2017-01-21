@@ -61,6 +61,7 @@ li button {
     border-left-color: #fff;
     border-right-color: #a77;
     border-bottom-color: #a77;
+    margin-right: 10px;
     padding: 5px 10px;
 }
 li button:disabled {
@@ -72,4 +73,7 @@ li button:disabled {
     display: block;
     font-size: 1.4em;
 }
-
+textarea {
+    height: 200px;
+    width: 380px;
+}
