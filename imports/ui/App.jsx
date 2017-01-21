@@ -47,6 +47,10 @@ class App extends Component {
     ReactDOM.findDOMNode(this.refs.passengers).value = '';
   }
 
+  handleFilterClear(event) {
+    
+  }
+
   handleFilter(event) {
     const text = ReactDOM.findDOMNode(this.refs.filter).value.trim();
     this.setState({
@@ -88,6 +92,7 @@ class App extends Component {
               placeholder="Type to filter"
               onKeyUp={ this.handleFilter.bind(this) }
             />
+            <button type="reset" onClick={this.handleFilterClear.bind(this)}>Clear</button>
           </form>
 
         </header>

@@ -21,6 +21,12 @@ input {
     margin: 5px 0;
     padding: 1px 5px;
 }
+.filter input {
+    width: 70%;
+}
+.filter button {
+    font-size: 16px;
+}
 .delete {
     display: none;
 }
@@ -53,17 +59,19 @@ li > span.buttons {
     text-align: right;
     padding: 9px 0 9px 0;
 }
-li button {
+button {
     font-size: 20px;
     background: #f99;
-    width: 100px;
     border-top-color: #fff;
     border-left-color: #fff;
     border-right-color: #a77;
     border-bottom-color: #a77;
-    margin-right: 10px;
     margin-left: 10px;
     padding: 5px 10px;
+}
+li button {
+    width: 100px;
+    margin-right: 10px;
 }
 li button:disabled {
     background: #888;
