@@ -109,12 +109,10 @@ class App extends Component {
             />
             <button type="submit">Add</button>
           </form>
-          /*
           <form className="new-party" onSubmit={this.replaceAll.bind(this)} >
             <textarea ref="replaceAll"></textarea>
             <button type="submit">Replace All</button>
           </form>
-          */
         </footer>
       </div>
     );
