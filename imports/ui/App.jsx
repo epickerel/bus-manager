@@ -48,7 +48,9 @@ class App extends Component {
   }
 
   handleFilterClear(event) {
-    
+    this.setState({
+      filter: '',
+    });    
   }
 
   handleFilter(event) {
