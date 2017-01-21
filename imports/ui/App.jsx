@@ -92,7 +92,7 @@ class App extends Component {
               ref="passengers"
               placeholder="Number of passengers"
             />
-            <button type="submit"></button>
+            <button type="submit">Add</button>
           </form>
         </footer>
       </div>

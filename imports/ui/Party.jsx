@@ -32,7 +32,7 @@ export default class Party extends Component {
       <li className={partyClassName}>
 
         <span className="name-of-party">
-          <strong>{this.props.party.headOfParty}:</strong> {this.props.party.boarded}/{this.props.party.numberOfSeats} boarded
+          <strong>{this.props.party.headOfParty}</strong> {this.props.party.boarded}/{this.props.party.numberOfSeats} boarded
         </span>
 
         <span className="buttons">
