@@ -18,14 +18,14 @@ h1 {
 input {
     font-size: 20px;
     width: 300px;
-    margin: 5px 0px 5px 20px;
+    margin: 5px 0px 5px;
     padding: 1px 5px;
 }
 .delete {
     display: none;
 }
 ul {
-    padding: 0 0 0 20px;
+    padding: 0;
     list-style: none;
     display: table;
 }
