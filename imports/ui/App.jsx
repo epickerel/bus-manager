@@ -39,6 +39,7 @@ class App extends Component {
     // Find the text field via the React ref
     const headOfParty = ReactDOM.findDOMNode(this.refs.name).value.trim();
     const passengers = Number(ReactDOM.findDOMNode(this.refs.passengers).value.trim()) || 1;
+    if (!headOfParty) return;
     Meteor.call('parties.insert', headOfParty, passengers);
  
     // Clear form
