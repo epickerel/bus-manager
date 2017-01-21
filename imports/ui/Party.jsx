@@ -4,10 +4,6 @@ import classnames from 'classnames';
 
 // Party component - represents a single todo item
 export default class Party extends Component {
-  toggleChecked() {
-    // Set the checked property to the opposite of its current value
-    Meteor.call('parties.setChecked', this.props.party._id, !this.props.party.checked);
-  }
 
   deleteThisParty() {
     Meteor.call('parties.remove', this.props.party._id);

@@ -63,7 +63,7 @@ class App extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Bus Parties ({this.props.completeCount} incomplete)</h1>
+          <h1>Bus Parties ({this.props.completeCount} seats needed)</h1>
 
           <form className="filter">
             <input
@@ -109,10 +109,12 @@ export default createContainer(() => {
   Meteor.subscribe('parties');
 
   var parties = Parties.find({}, { sort: { headOfParty: -1 } }).fetch();
+  var remainingSeats = 0;
+  parties.forEach(party => {
+    remainingSeats += party.numberOfSeats - party.boarded;
+  });
   return {
     parties: parties,
-    completeCount: parties.filter(party => {
-      return party.boarded < party.numberOfSeats;
-    }).length,
+    completeCount: remainingSeats,
   };
 }, App);
